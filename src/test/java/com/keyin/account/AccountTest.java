@@ -44,4 +44,16 @@ public class AccountTest {
         Assertions.assertEquals(900, accountUnderTest.getBalance());
     }
 
+    @Test
+    public void testCancel() {
+        Account accountUnderTest = new Account();
+
+        Assertions.assertTrue(accountUnderTest.isActive());
+
+        accountUnderTest.cancel();
+
+        Assertions.assertFalse(accountUnderTest.isActive());
+
+    }
+
 }
