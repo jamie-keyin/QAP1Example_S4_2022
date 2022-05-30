@@ -18,7 +18,7 @@ public class Account {
 
     public int debit(int amountToDebit) throws AccountBalanceException {
         if (0 > (balance - amountToDebit)) {
-            throw new AccountBalanceException("Amount to debit causes negative balance!!  Transaction cancled!");
+            throw new AccountBalanceException("Amount to debit causes negative balance!!  Transaction canceled!");
         }
 
         balance -= amountToDebit;
