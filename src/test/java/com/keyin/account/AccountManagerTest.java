@@ -2,21 +2,36 @@ package com.keyin.account;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@ExtendWith(MockitoExtension.class)
 public class AccountManagerTest {
+    @Mock
+    private AccountDB mockAccountDB;
 
     @Test
-    public void testGetAccount() {
+    public void testGetActiveAccountsForCustomer() {
         AccountManager accountManagerUnderTest = new AccountManager();
+        accountManagerUnderTest.setAccountDB(mockAccountDB);
 
-        Account accountFound = accountManagerUnderTest.getAccount("Jamie");
+        List<Account> accountsForTest = new ArrayList<Account>();
 
-//        System.out.println(accountFound.getName());
+        Account accountForJamie = new Account();
+        accountForJamie.setName("Jamie");
 
-        Assertions.assertNull(accountFound);
+        accountsForTest.add(accountForJamie);
 
-        accountFound = accountManagerUnderTest.getAccount("Test");
 
-        Assertions.assertNotNull(accountFound);
+        Mockito.when(mockAccountDB.getAllAccounts()).thenReturn(accountsForTest);
+
+        List<Account> accountFound = accountManagerUnderTest.getActiveAccountsForCustomer("Jamie");
+
+        Assertions.assertTrue(accountFound.size() > 0);
     }
 }
