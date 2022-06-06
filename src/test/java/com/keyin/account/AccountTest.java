@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class AccountTest {
+    // change to demo PR workflow
 
     @Test
     public void testCredit() {
@@ -48,7 +49,7 @@ public class AccountTest {
     public void testCancel() {
         Account accountUnderTest = new Account();
 
-        Assertions.assertTrue(accountUnderTest.isActive());
+         Assertions.assertTrue(accountUnderTest.isActive());
 
         accountUnderTest.cancel();
 
