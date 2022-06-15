@@ -30,8 +30,19 @@ public class AccountManagerTest {
 
         Mockito.when(mockAccountDB.getAllAccounts()).thenReturn(accountsForTest);
 
-        List<Account> accountFound = accountManagerUnderTest.getActiveAccountsForCustomer("Jamie");
+        List<Account> accountsFound = accountManagerUnderTest.getActiveAccountsForCustomer("Jamie");
 
-        Assertions.assertTrue(accountFound.size() > 0);
+        Assertions.assertTrue(accountsFound.size() == 1);
+
+
+
+        accountForJamie.setActive(false);
+
+        accountsFound = accountManagerUnderTest.getActiveAccountsForCustomer("Jamie");
+
+        Assertions.assertTrue(accountsFound.size() == 0);
+
+
+        System.out.println("Testing.....  finished!");
     }
 }
